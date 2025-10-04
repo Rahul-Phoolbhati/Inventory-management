@@ -1,0 +1,43 @@
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Prisma client generated files
+prisma/generated/
+
+# Jest cache
+jest-cache/
+jest/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# VSCode settings
+.vscode/
+
+# Mac system files
+.DS_Store
+
+# Optional npm global modules
+.pnpm-debug.log*
+
+# Coverage directory
+coverage/
+
+# Misc
+.idea/
