@@ -35,8 +35,8 @@ export async function listProducts(opts: { q?: string; below_threshold?: boolean
   const where: any = {};
   if (q) {
     where.OR = [
-      { name: { contains: q, mode: "insensitive" } },
-      { description: { contains: q, mode: "insensitive" } }
+      { name: { contains: q} },
+      { description: { contains: q} }
     ];
   }
   if (below_threshold) {
@@ -46,8 +46,6 @@ export async function listProducts(opts: { q?: string; below_threshold?: boolean
     ];
   }
 
-  // Prisma doesn't support comparing two fields directly in filters for SQLite.
-  // We'll fetch then filter in memory if below_threshold is requested.
   const products = await prisma.product.findMany({
     where: q ? where : undefined,
     orderBy: { created_at: "desc" },
@@ -55,9 +53,9 @@ export async function listProducts(opts: { q?: string; below_threshold?: boolean
     take: pageSize
   });
 
-  if (below_threshold) {
-    return products.filter(p => p.stock_quantity < p.low_stock_threshold);
-  }
+  // if (below_threshold) {
+  //   return products.filter(p => p.stock_quantity < p.low_stock_threshold);
+  // }
   return products;
 }
 
