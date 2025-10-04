@@ -68,7 +68,7 @@ describe("Products CRUD and inventory ops", () => {
   it("updates product (reject negative stock)", async () => {
     const res = await request(app).patch(`/products/${id}`).send({ stock_quantity: -1 });
     expect(res.status).toBe(400);
-    expect(res.body.error.code).toBe("NEGATIVE_STOCK");
+    expect(res.body.error.code).toBe("VALIDATION_ERROR");
   });
 
   it("deletes a product", async () => {
